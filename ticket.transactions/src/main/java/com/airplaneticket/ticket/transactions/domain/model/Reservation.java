@@ -1,5 +1,6 @@
 package com.airplaneticket.ticket.transactions.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 
 public class Reservation {
     private int idReservation;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime reservationDate;
     private User user;
     private Fligth fligth;
@@ -20,6 +22,10 @@ public class Reservation {
         this.user = user;
         this.fligth = fligth;
         this.ticket = ticket;
+    }
+
+    public Reservation() {
+
     }
 
     public int getIdReservation() {

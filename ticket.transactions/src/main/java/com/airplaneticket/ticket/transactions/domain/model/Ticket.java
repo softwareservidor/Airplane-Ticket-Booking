@@ -2,12 +2,12 @@ package com.airplaneticket.ticket.transactions.domain.model;
 
 public class Ticket {
     private int idTicket;
-    private String Observation;
+    private String observation;
 
 
     public Ticket(int idTicket, String observation) {
         this.idTicket = idTicket;
-        Observation = observation;
+        this.observation = observation;
     }
 
     public int getIdTicket() {
@@ -19,10 +19,10 @@ public class Ticket {
     }
 
     public String getObservation() {
-        return Observation;
+        return observation;
     }
 
     public void setObservation(String observation) {
-        Observation = observation;
+        this.observation = observation;
     }
 }

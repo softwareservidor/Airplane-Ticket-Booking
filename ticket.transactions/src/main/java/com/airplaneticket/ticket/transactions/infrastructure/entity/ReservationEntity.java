@@ -2,6 +2,7 @@ package com.airplaneticket.ticket.transactions.infrastructure.entity;
 import com.airplaneticket.ticket.transactions.domain.model.Fligth;
 import com.airplaneticket.ticket.transactions.domain.model.Ticket;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -12,10 +13,13 @@ public class ReservationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idReservation;
-    private int userEntity;
-    private int fligthEntity;
-    private int ticket;
-
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private UserEntity IduserEntity;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private FligthEntity fligthEntity;
+    @OneToOne(cascade = CascadeType.ALL)
+    private TicketEntity ticket;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     @Column(name = "fecha_reserva")
     private LocalDateTime reservationDate;
 
@@ -27,27 +31,27 @@ public class ReservationEntity {
         this.idReservation = idReservation;
     }
 
-    public int getUserEntity() {
-        return userEntity;
+    public UserEntity getIduserEntity() {
+        return IduserEntity;
     }
 
-    public void setUserEntity(int userEntity) {
-        this.userEntity = userEntity;
+    public void setIduserEntity(UserEntity iduserEntity) {
+        IduserEntity = iduserEntity;
     }
 
-    public int getFligthEntity() {
+    public FligthEntity getFligthEntity() {
         return fligthEntity;
     }
 
-    public void setFligthEntity(int fligthEntity) {
+    public void setFligthEntity(FligthEntity fligthEntity) {
         this.fligthEntity = fligthEntity;
     }
 
-    public int getTicket() {
+    public TicketEntity getTicket() {
         return ticket;
     }
 
-    public void setTicket(int ticket) {
+    public void setTicket(TicketEntity ticket) {
         this.ticket = ticket;
     }
 
